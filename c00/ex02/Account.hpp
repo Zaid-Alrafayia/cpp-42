@@ -10,6 +10,8 @@
 #pragma once
 #ifndef __ACCOUNT_H__
 # define __ACCOUNT_H__
+# include <ctime>
+# include <iomanip>
 # include <iostream>
 // ************************************************************************** //
 //                               Account Class                                //
@@ -38,6 +40,7 @@ class Account
 	}
 	static void displayAccountsInfos(void)
 	{
+		_displayTimestamp();
 		std::cout << "Accounts:" << _nbAccounts << std::endl;
 		std::cout << "Total Amount:" << _totalAmount << std::endl;
 		std::cout << "Total Deposits:" << _totalNbDeposits << std::endl;
@@ -68,6 +71,11 @@ class Account
 	}
 	void displayStatus(void) const
 	{
+		_displayTimestamp();
+		std::cout << "Account ID:" << _accountIndex;
+		std::cout << "Amount:" << _amount;
+		std::cout << "Deposits:" << _nbDeposits;
+		std::cout << "Withdrawls:" << _nbWithdrawals;
 	}
 
   private:
@@ -75,8 +83,12 @@ class Account
 	static int _totalAmount;
 	static int _totalNbDeposits;
 	static int _totalNbWithdrawals;
+	static time_t time;
 
-	static void _displayTimestamp(void);
+	static void _displayTimestamp(void)
+	{
+		std ::cout << '[' << std::time(&time) << '] ';
+	}
 
 	int _accountIndex;
 	int _amount;
