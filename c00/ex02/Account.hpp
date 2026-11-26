@@ -22,73 +22,27 @@ class Account
   public:
 	typedef Account t;
 
-	static int getNbAccounts(void)
-	{
-		return (_nbAccounts);
-	}
-	static int getTotalAmount(void)
-	{
-		return (_totalAmount);
-	}
-	static int getNbDeposits(void)
-	{
-		return (_totalNbDeposits);
-	}
-	static int getNbWithdrawals(void)
-	{
-		return (_totalNbWithdrawals);
-	}
-	static void displayAccountsInfos(void)
-	{
-		_displayTimestamp();
-		std::cout << "Accounts:" << _nbAccounts << std::endl;
-		std::cout << "Total Amount:" << _totalAmount << std::endl;
-		std::cout << "Total Deposits:" << _totalNbDeposits << std::endl;
-		std::cout << "Total Withdrawls:" << _totalNbWithdrawals << std::endl;
-	}
+	static int getNbAccounts(void);
+	static int getTotalAmount(void);
+	static int getNbDeposits(void);
+	static int getNbWithdrawals(void);
+	static void displayAccountsInfos(void);
 
 	Account(int initial_deposit);
 	~Account(void);
 
-	void makeDeposit(int deposit)
-	{
-		_totalAmount += deposit;
-		_totalNbDeposits++;
-	}
-	bool makeWithdrawal(int withdrawal)
-	{
-		if (_totalAmount >= withdrawal)
-		{
-			_totalAmount -= withdrawal;
-			_totalNbWithdrawals++;
-			return (true);
-		}
-		return (false);
-	}
-	int checkAmount(void) const
-	{
-		return (_amount);
-	}
-	void displayStatus(void) const
-	{
-		_displayTimestamp();
-		std::cout << "Account ID:" << _accountIndex;
-		std::cout << "Amount:" << _amount;
-		std::cout << "Deposits:" << _nbDeposits;
-		std::cout << "Withdrawls:" << _nbWithdrawals;
-	}
+	void makeDeposit(int deposit);
+	bool makeWithdrawal(int withdrawal);
+	int checkAmount(void) const;
+	void displayStatus(void) const;
 
   private:
 	static int _nbAccounts;
 	static int _totalAmount;
 	static int _totalNbDeposits;
 	static int _totalNbWithdrawals;
-	static time_t time;
 
-	static void _displayTimestamp(void)
-	{
-		std ::cout << '[' << std::time(&time) << '] ';
-	}
+	static void _displayTimestamp(void);
 
 	int _accountIndex;
 	int _amount;
